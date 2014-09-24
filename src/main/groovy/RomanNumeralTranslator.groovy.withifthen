@@ -1,0 +1,48 @@
+class RomanNumeralTranslator {
+	int translate(String numeralString) {
+		def total = 0
+		def onesValue = 0
+		def tensValue = 0
+		def oneHundredsValue = 0
+		def oneThousandsValue = 0
+		numeralString.toUpperCase().each() { digit-> 
+			if (digit == "I") {
+				 onesValue += 1
+                        }
+			else if (digit == "X")
+			{
+				total -= onesValue
+				tensValue += 10
+				onesValue = 0
+			}
+			else if (digit == "L")
+			{
+				total += 50 - tensValue
+				tensValue = 0
+			}
+			else if (digit == "C")
+			{
+				total -= tensValue
+				oneHundredsValue += 100
+				tensValue = 0
+			}
+			else if (digit == "D")
+			{
+				total += 500 - oneHundredsValue
+				oneHundredsValue = 0
+			}
+			else if (digit == "M")
+			{
+				total -= oneHundredsValue
+				oneThousandsValue += 1000
+				oneHundredsValue = 0
+			}
+			else if (digit == "V")
+			{
+				total += 5 - onesValue
+				onesValue = 0
+			}
+		}
+		total+onesValue+tensValue+oneHundredsValue+oneThousandsValue
+	}
+}
